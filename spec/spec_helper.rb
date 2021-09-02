@@ -1,4 +1,4 @@
-require 'character_sequence_parser'
+require 'parser'
 require_relative './support/matchers'
 
 if ENV['COVERAGE']
