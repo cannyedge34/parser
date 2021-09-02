@@ -10,6 +10,8 @@ describe Parser do
       end
 
       it { expect(Parser::Cli::App).to be_kind_of(Class) }
+      it { expect(Parser::Resolver::App).to be_kind_of(Class) }
+      it { expect(Parser::Presenter::App).to be_kind_of(Class) }
     end
   end
 
@@ -24,7 +26,8 @@ describe Parser do
     it 'calls Parser::App with passed argument' do
       expect(app_klass).to receive(:new).with(
         cli: be_instance_of(Parser::Cli::App),
-        resolver: be_instance_of(Parser::Resolver::App)
+        resolver: be_instance_of(Parser::Resolver::App),
+        presenter: be_instance_of(Parser::Presenter::App)
       ).once.and_return(app)
       expect(app).to receive(:call).once.with('test-source-path')
       described_class.run('test-source-path')

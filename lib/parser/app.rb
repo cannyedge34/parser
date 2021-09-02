@@ -4,10 +4,12 @@ module Parser
   class App
     def initialize(
       cli:,
-      resolver:
+      resolver:,
+      presenter:
     )
       @cli = cli
       @resolver = resolver
+      @presenter = presenter
     end
 
     def call(argv)
@@ -21,11 +23,11 @@ module Parser
     def inner_call(argv)
       cli.call(argv).then do |input|
         resolver.call(input).then do |output|
-          output
+          presenter.call(output)
         end
       end
     end
 
-    attr_reader :cli, :resolver
+    attr_reader :cli, :resolver, :presenter
   end
 end
