@@ -3,18 +3,21 @@ require 'parser/app'
 describe Parser::App do
   subject(:app) do
     described_class.new(
-      cli: cli
+      cli: cli,
+      resolver: resolver
     )
   end
 
   let(:cli) { instance_double(Parser::Cli::App) }
+  let(:resolver) { instance_double(Parser::Resolver::App) }
 
   before { Parser.load }
 
   describe '#call' do
     it 'returns the output by calls chain of nested objects' do
-      allow(cli).to receive(:call).with('test-argv').and_return('test-parser')
-      expect(app.call('test-argv')).to eq('test-parser')
+      allow(cli).to receive(:call).with('test-argv').and_return('test-resolver')
+      allow(resolver).to receive(:call).with('test-resolver').and_return('test-output')
+      expect(app.call('test-argv')).to eq('test-output')
     end
 
     context 'when exception is raised' do

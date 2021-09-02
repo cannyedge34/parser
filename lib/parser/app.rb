@@ -3,9 +3,11 @@ require_relative './exceptions'
 module Parser
   class App
     def initialize(
-      cli:
+      cli:,
+      resolver:
     )
       @cli = cli
+      @resolver = resolver
     end
 
     def call(argv)
@@ -18,10 +20,12 @@ module Parser
 
     def inner_call(argv)
       cli.call(argv).then do |input|
-        input
+        resolver.call(input).then do |output|
+          output
+        end
       end
     end
 
-    attr_reader :cli
+    attr_reader :cli, :resolver
   end
 end
