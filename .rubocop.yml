@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - vendor/**/*.rb
+    - vendor/bundle/**/*
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/BlockLength:
+  Max: 125
+RSpec/MultipleExpectations:
+  Max: 5
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+Rails/Output:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 10
+RSpec/NestedGroups:
+  Max: 4
