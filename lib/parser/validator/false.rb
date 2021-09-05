@@ -1,7 +1,7 @@
 module Parser
-  module Validations
+  module Validator
     class False
-      def validate!(error)
+      def call(error)
         raise error
       end
     end

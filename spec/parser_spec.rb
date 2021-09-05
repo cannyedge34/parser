@@ -12,6 +12,7 @@ describe Parser do
       it { expect(Parser::Cli::App).to be_kind_of(Class) }
       it { expect(Parser::Resolver::App).to be_kind_of(Class) }
       it { expect(Parser::Presenter::App).to be_kind_of(Class) }
+      it { expect(Parser::Validator::App).to be_kind_of(Class) }
     end
   end
 
