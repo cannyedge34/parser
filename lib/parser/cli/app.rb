@@ -8,7 +8,9 @@ module Parser
       end
 
       def call(argv)
-        validator.validate(Conditions.new(cli_no_arguments_error(argv), cli_arguments_count_error(argv)))
+        validator.validate(
+          Conditions.new(cli_no_arguments_error_condition(argv), cli_arguments_count_error_condition(argv))
+        )
         argv[0]
       end
 
@@ -16,11 +18,11 @@ module Parser
 
       attr_reader :validator
 
-      def cli_no_arguments_error(argv)
+      def cli_no_arguments_error_condition(argv)
         argv.any? && !argv.first&.empty?
       end
 
-      def cli_arguments_count_error(argv)
+      def cli_arguments_count_error_condition(argv)
         argv.size == 1
       end
     end
